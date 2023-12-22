@@ -2,6 +2,9 @@
 service: api
 frameworkVersion: "3"
 
+plugins:
+  - serverless-plugin-typescript
+
 provider:
   name: aws
   httpApi:
