@@ -9,14 +9,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.478.0",
+    "@aws-sdk/lib-dynamodb": "^3.478.0",
     "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.130",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.10.5",
     "@types/uuid": "^9.0.7",
-    "aws-sdk": "^2.1523.0",
     "serverless-plugin-typescript": "^2.1.5",
     "typescript": "^5.3.3"
   }
