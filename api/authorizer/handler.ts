@@ -16,7 +16,6 @@ export async function authorizer(event: APIGatewayRequestAuthorizerEventV2) {
 };
 
 function generatePolicy (effect: string, resource: string, user?: any): AuthResponse {
-    console.log(user);
     const authResponse = {} as AuthResponse;
     const policyDocument = {} as PolicyDocument
     if (effect && resource) {
@@ -32,7 +31,6 @@ function generatePolicy (effect: string, resource: string, user?: any): AuthResp
     if (user) {
         authResponse.policyDocument = policyDocument;
     }
-    console.log(authResponse);
 
     return {
         principalId: 'user',

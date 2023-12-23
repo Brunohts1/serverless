@@ -3,7 +3,7 @@ import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb';
 import { compareSync } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { ResponseUtil } from '../utils/response-util';
-
+import { unmarshall } from '@aws-sdk/util-dynamodb'
 
 export const login = async( 
   event: APIGatewayProxyEvent 
@@ -27,15 +27,12 @@ export const login = async(
   });
   
   const data = await client.send(queryCommand);
-
-  console.log(data);
-  console.log('user', data)
   
   if (!data.Items) return ResponseUtil.createResponse(404, 'Usuário e senha não combinam');
   
-  const user = data.Items[0];
+  const user = unmarshall(data.Items[0]);
 
-  if (compareSync(body.password, user.password.S || '')){
+  if (compareSync(body.password, user.password || '')){
     delete user.password;
     return ResponseUtil.createResponse(200, sign(user, process.env.JWT_SECRET!));
   }
