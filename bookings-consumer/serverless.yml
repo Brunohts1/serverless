@@ -1,0 +1,22 @@
+service: bookings-consumer
+frameworkVersion: "3"
+
+plugins:
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+  stage: dev
+  region: us-east-1
+
+functions:
+  stream_listener:
+    handler: handler.listen
+    role: ${ssm:${self:custom.stage}-bookings-stream-consumer-iam-role }
+    events:
+     - stream: ${ssm:${self:custom.stage}-dynamodb-bookings-stream}
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
