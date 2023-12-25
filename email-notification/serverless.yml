@@ -1,0 +1,26 @@
+service: email-notification
+frameworkVersion: "3"
+
+plugins:
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+  stage: dev
+  region: us-east-1
+
+functions:
+  send-email:
+    handler: handler.send
+    role: ${ssm:${self:custom.stage}-email-iam-role}
+    events:
+      - sqs: ${ssm:${self:custom.stage}-email-sqs}
+    environment:
+      SMTP_SERVER: ${ssm:${self:custom.stage}-smtp-server}
+      EMAIL_FROM: ${ssm:${self:custom.stage}-email-from}
+      EMAIL_TO: ${ssm:${self:custom.stage}-email-to}
+      EMAIL_FROM_PASSWORD: ${ssm:${self:custom.stage}-email-from-password}
+custom:
+  stage: ${opt:stage, self:provider.stage}

@@ -7,3 +7,4 @@ terraform/environments/dev/.terraform/providers/registry.terraform.io/hashicorp/
 api/create-booking/package-lock.json
 api/package-lock.json
 
+email-notification/package-lock.json

@@ -1,1 +1,6 @@
 environment = "dev"
+region = "us-east-1"
+email_from = "bruno.taques@zohomail.com"
+email_from_password = "serverless-framework"
+email_to = "jeyarek300@wikfee.com"
+smtp_server = "smtp.zoho.com"
