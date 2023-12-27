@@ -20,6 +20,7 @@ provider:
 
 functions:
   register:
+    memorySize: ${self:custom.memorySize.${self:custom.stage}}
     role: ${ssm:${self:custom.stage}-register-iam-role}
     handler: register/handler.register
     environment:
@@ -70,3 +71,6 @@ functions:
           
 custom:
   stage: ${opt:stage, self:provider.stage}
+  memorySize: 
+    dev: 128
+    prod: 2048

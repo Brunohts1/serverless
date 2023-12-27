@@ -9,7 +9,6 @@ resource "aws_dynamodb_table" "bookings" {
   read_capacity = "${var.read_capacity}"
   stream_enabled = true
   stream_view_type = "NEW_IMAGE"
-
 }
 
 resource "aws_ssm_parameter" "dynamodb_bookings_table" {

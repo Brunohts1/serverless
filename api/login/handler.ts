@@ -15,6 +15,7 @@ export const login = async(
     }
   }
   const body = JSON.parse(event.body);
+
   const client = new DynamoDBClient({ region:  process.env.AWS_REGION });
 
   const queryCommand = new QueryCommand({
@@ -37,5 +38,5 @@ export const login = async(
     return ResponseUtil.createResponse(200, sign(user, process.env.JWT_SECRET!));
   }
 
-  return ResponseUtil.createResponse(404, 'Usuário e senha não combinam');;
+  return ResponseUtil.createResponse(404, 'Usuário e senha não combinam');
 }
